@@ -1,7 +1,7 @@
 export interface Repos {
   [name: string]: {
     gitUrl: string;
-    path: string;
+    path: string[];
     license: string;
     branch?: string;
     licenseUrl?: string;
@@ -12,7 +12,7 @@ export interface Repos {
 export const repos: Repos = {
   "honojs/website": {
     gitUrl: "https://github.com/honojs/website.git",
-    path: "docs",
+    path: ["docs"],
     branch:"main",
     license: "MIT",
     lang:"en"
