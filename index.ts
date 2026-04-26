@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import {repos} from "./repos"
 
-const state = JSON.parse(await fs.readFile("state.json", "utf-8").catch(() => "{}"));
+const state = await Bun.file("state.json").json();
 for (const [name, repo] of Object.entries(repos)) {
   const repoDir = `tmp/${name.replace("/", "__")}`;
   const docsOutDir = `docs/${name.replace("/", "__")}`;
@@ -28,13 +28,13 @@ for (const [name, repo] of Object.entries(repos)) {
 
     for (const file of files.trim().split("\n")) {
       if (!file) continue;
-      const content = await fs.readFile(file, "utf-8");
+      const content = await Bun.file(file).text();
       const relativePath = file.replace(repoDir + "/", "");
 
       // Create output file in docs/:name/ with same directory structure
       const outPath = path.join(docsOutDir, relativePath);
       await fs.mkdir(path.dirname(outPath), { recursive: true });
-      await fs.writeFile(outPath, content);
+      await Bun.file(outPath).write(content);
 
       const out = {
         repo: name,
@@ -48,6 +48,8 @@ for (const [name, repo] of Object.entries(repos)) {
   }
 
   state[name] = commit;
+  // cleanup memory
+  Bun.gc()
 }
 
-await fs.writeFile("state.json", JSON.stringify(state, null, 2));
+await Bun.file("state.json").write(JSON.stringify(state, null, 2));
