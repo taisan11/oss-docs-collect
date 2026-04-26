@@ -27,6 +27,13 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .cache
 *.tsbuildinfo
 
+# temporary directories
+tmp/
+
+# generated dataset
+dataset.jsonl
+state.json
+
 # IntelliJ based IDEs
 .idea
 
