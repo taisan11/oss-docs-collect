@@ -6,7 +6,7 @@ import {repos} from "./repos"
 const state = JSON.parse(await fs.readFile("state.json", "utf-8").catch(() => "{}"));
 for (const [name, repo] of Object.entries(repos)) {
   const repoDir = `tmp/${name.replace("/", "__")}`;
-  const docsOutDir = `docs/${name}`;
+  const docsOutDir = `docs/${name.replace("/", "__")}`;
 
   await $`rm -rf ${repoDir}`;
   await $`git clone --depth=1 --branch ${repo.branch || "main"} ${repo.gitUrl} ${repoDir}`;
@@ -30,7 +30,7 @@ for (const [name, repo] of Object.entries(repos)) {
       if (!file) continue;
       const content = await fs.readFile(file, "utf-8");
       const relativePath = file.replace(repoDir + "/", "");
-      
+
       // Create output file in docs/:name/ with same directory structure
       const outPath = path.join(docsOutDir, relativePath);
       await fs.mkdir(path.dirname(outPath), { recursive: true });
