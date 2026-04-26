@@ -19,6 +19,8 @@ jobs:
       - run: bun index.ts
 
       - run: |
+          git config set user.email "action@github.com"
+          git config set user.name "collect bot"
           git add .
           git commit -m "update dataset" || echo "no changes"
           git push
