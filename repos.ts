@@ -25,7 +25,7 @@ export const repos: Repos = {
     lang:"ja"
   },
   "sircmpwn/wayland-book": {
-    gitUrl:"https://git.sr.ht/~sircmpwn/wayland-book.git",
+    gitUrl:"https://git.sr.ht/~sircmpwn/wayland-book",
     path:["src"],
     branch:"master",
     license:"CC BY-SA 4.0",
