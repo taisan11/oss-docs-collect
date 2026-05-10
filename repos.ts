@@ -95,24 +95,24 @@ export const repos: Repos = {
   //   translateFrom:"vitejs/vite",
   //   lang:"cn"
   // },
-  "vitejs/docs-ja": {
-    gitUrl:"https://github.com/vitejs/docs-ja",
-    path:["docs"],
-    branch:"main",
-    license:"MIT License",
-    licenseUrl:"https://github.com/vitejs/docs-ja/blob/main/LICENSE",
-    translateFrom:"vitejs/vite",
-    lang:"ja"
-  },  
-  "vitejs/docs-ko": {
-    gitUrl:"https://github.com/vitejs/docs-ko",
-    path:["docs"],
-    branch:"main",
-    license:"MIT License",
-    licenseUrl:"https://github.com/vitejs/docs-ko/blob/main/LICENSE",
-    translateFrom:"vitejs/vite",
-    lang:"ko"
-  },
+  // "vitejs/docs-ja": {
+  //   gitUrl:"https://github.com/vitejs/docs-ja",
+  //   path:["docs"],
+  //   branch:"main",
+  //   license:"MIT License",
+  //   licenseUrl:"https://github.com/vitejs/docs-ja/blob/main/LICENSE",
+  //   translateFrom:"vitejs/vite",
+  //   lang:"ja"
+  // },  
+  // "vitejs/docs-ko": {
+  //   gitUrl:"https://github.com/vitejs/docs-ko",
+  //   path:["docs"],
+  //   branch:"main",
+  //   license:"MIT License",
+  //   licenseUrl:"https://github.com/vitejs/docs-ko/blob/main/LICENSE",
+  //   translateFrom:"vitejs/vite",
+  //   lang:"ko"
+  // },
   "oxc-project/website": {
     gitUrl:"https://github.com/oxc-project/website",
     path:["src"],
