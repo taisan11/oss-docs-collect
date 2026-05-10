@@ -86,15 +86,15 @@ export const repos: Repos = {
     translateFrom:"vitejs/vite",
     lang:"fa"
   },
-  "vitejs/docs-cn": {
-    gitUrl:"https://github.com/vitejs/docs-cn",
-    path:["docs"],
-    branch:"main",
-    license:"MIT License",
-    licenseUrl:"https://github.com/vitejs/docs-cn/blob/main/LICENSE",
-    translateFrom:"vitejs/vite",
-    lang:"cn"
-  },
+  // "vitejs/docs-cn": {
+  //   gitUrl:"https://github.com/vitejs/docs-cn",
+  //   path:["docs"],
+  //   branch:"main",
+  //   license:"MIT License",
+  //   licenseUrl:"https://github.com/vitejs/docs-cn/blob/main/LICENSE",
+  //   translateFrom:"vitejs/vite",
+  //   lang:"cn"
+  // },
   "vitejs/docs-ja": {
     gitUrl:"https://github.com/vitejs/docs-ja",
     path:["docs"],
