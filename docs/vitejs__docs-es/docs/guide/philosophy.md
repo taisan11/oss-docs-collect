@@ -1,0 +1,27 @@
+# Filosofía del Proyecto
+
+## Núcleo extensible y liviano
+
+Vite no tiene la intención de cubrir todos los casos de uso para todos los usuarios. Vite tiene como objetivo soportar los patrones más comunes para construir aplicaciones web fuera de la caja, pero [el núcleo de Vite](https://github.com/vitejs/vite) debe mantenerse liviano con una API reducida para mantener el proyecto de manera sostenible a largo plazo. Este objetivo es posible gracias al [sistema de plugins de Vite](./api-plugin.md), que se basa en un superconjunto de la API de plugins de Rollup. Las funcionalidades que se pueden implementar como plugins externos generalmente no se agregarán al núcleo de Vite. [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) es un excelente ejemplo de lo que se puede lograr fuera del núcleo de Vite, y hay muchos [plugins bien mantenidos](https://github.com/vitejs/awesome-vite#plugins) para cubrir tus necesidades. El empaquetador de Vite, [Rolldown](https://rolldown.rs/), mantiene la compatibilidad con la interfaz de plugins de Rollup, por lo que los plugins a menudo se pueden utilizar tanto en proyectos de Vite como en proyectos de Rollup simple.
+
+## Impulsando la Web Moderna
+
+Vite ofrece funcionalidades con opiniones que promueven la escritura de código moderno. Por ejemplo:
+
+- El código fuente solo puede escribirse en ESM, donde las dependencias que no son ESM deben ser [precompiladas como ESM](./dep-pre-bundling) para funcionar.
+- Se fomenta el uso de los web workers escritos con la sintaxis [`new Worker`](./features#web-workers) para seguir los estándares modernos.
+- Los módulos de Node.js no se pueden utilizar en el navegador.
+
+Al agregar nuevas funcionalidades, se siguen estos patrones para crear una API a prueba de futuro, que no siempre es compatible con otras herramientas de compilación.
+
+## Enfoque pragmático hacia el rendimiento
+
+Vite se ha centrado en el rendimiento desde sus [orígenes](./why.md). Su arquitectura de servidor de desarrollo permite que el HMR se mantenga rápido a medida que los proyectos escalan. Vite se basa en herramientas nativas que incluyen la [cadena de herramientas de Oxc](https://oxc.rs/) y [Rolldown](https://rolldown.rs/) para implementar tareas intensivas, pero mantiene el resto del código en JS para equilibrar la velocidad con la flexibilidad. Cuando es necesario, los plugins del framework recurrirán a [Babel](https://babeljs.io/) para compilar el código del usuario. Gracias a la compatibilidad de Rolldown con los plugins de Rollup, Vite tiene acceso a un amplio ecosistema de plugins.
+
+## Construyendo Frameworks de Trabajo sobre Vite
+
+Aunque Vite se puede utilizar directamente por los usuarios, brilla como una herramienta para crear frameworks. El núcleo de Vite es independiente del framework, pero existen plugins pulidos para cada framework de interfaz de usuario (IU). Su [API en JavaScript](./api-javascript.md) permite a los autores de frameworks de aplicaciones utilizar las funcionalidades de Vite para crear experiencias personalizadas para sus usuarios. Vite incluye soporte para [primitivos de SSR](./ssr.md), que generalmente están presentes en herramientas de nivel superior pero que son fundamentales para construir web frameworks modernos. Y los plugins de Vite completan el panorama al ofrecer una forma de compartir entre diferentes frameworks. Vite también es una excelente opción cuando se combina con [frameworks de backend](./backend-integration.md) como [Ruby](https://vite-ruby.netlify.app/) y [Laravel](https://laravel.com/docs/vite).
+
+## Un ecosistema activo
+
+La evolución de Vite es una cooperación entre los mantenedores de frameworks y plugins, los usuarios y el equipo de Vite. Fomentamos la participación activa en el desarrollo del núcleo de Vite una vez que un proyecto adopta Vite. Trabajamos en estrecha colaboración con los proyectos principales del ecosistema para minimizar las regresiones en cada lanzamiento, ayudados por herramientas como [vite-ecosystem-ci](https://github.com/vitejs/vite-ecosystem-ci). Esto nos permite ejecutar la integración continua (CI) de los proyectos principales que utilizan Vite en las solicitudes de cambios seleccionadas y nos brinda un estado claro de cómo reaccionaría el ecosistema ante un lanzamiento. Nos esforzamos por solucionar las regresiones antes de que afecten a los usuarios y permitir que los proyectos se actualicen a las versiones siguientes tan pronto como se publiquen. Si estás trabajando con Vite, te invitamos a unirte al [Discord de Vite](https://chat.vite.dev) y participar en el proyecto también.
