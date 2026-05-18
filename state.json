@@ -4,10 +4,10 @@
   "sircmpwn/wayland-book": "bec46606567adb6fd11ddf7e01878ac8155d9cf1",
   "nananapo/veryl-riscv-book": "c077cf6e3d5d5bdfb1ec6b04a3c4733359797f01",
   "vitejs/vite": "0ae2844ab6d6d1ccf78a2975b8132769fc35b302",
-  "vitejs/docs-es": "aa7896495557261b149bc015656b3d0f5d746de6",
+  "vitejs/docs-es": "0c24264be4cad97374cecba55d5a4cf9c1a3c577",
   "vitejs/docs-de": "a82ee984f0540f27f4189a7f55e0f2529efc8605",
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
   "oxc-project/website": "c59711f1551d59af8f9b561c250f5a56632928ff",
-  "rolldown/rolldown": "a91bd20c97d33d28d82fdd3923e088b10264ee61"
+  "rolldown/rolldown": "996b3f472ae391a08041d527620db36a7ae01d12"
 }
