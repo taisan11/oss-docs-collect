@@ -5,9 +5,9 @@
   "nananapo/veryl-riscv-book": "c077cf6e3d5d5bdfb1ec6b04a3c4733359797f01",
   "vitejs/vite": "c917f1ef9d9c6ef131af96d89089d8ec680b18f2",
   "vitejs/docs-es": "35201d10b4a4ee1ba0327e9cd4511173b187aeae",
-  "vitejs/docs-de": "b0021fbf5b1d4da0af45d7333a8e4572bbc5b60a",
+  "vitejs/docs-de": "7f56ab527b15fd042e8ea3defb25153dce990168",
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
-  "oxc-project/website": "4f90bf3f4ec6d1eac55ccd4058e69f6d146181fb",
-  "rolldown/rolldown": "997e509be821b1538dc01ad4a89063f9c1f18517"
+  "oxc-project/website": "7e87429593084ed1ff5b10c7ba389218706589bc",
+  "rolldown/rolldown": "a9e23ece0f595c4f209be113c1fa95f1fbc928ee"
 }
