@@ -1,0 +1,276 @@
+# 시작하기 {#getting-started}
+
+<audio id="vite-audio">
+  <source src="/vite.mp3" type="audio/mpeg">
+</audio>
+
+## 들어가기 전에 {#overview}
+
+Vite(프랑스어로 "빠르다"를 뜻하며, `/viːt/`<button style="border:none;padding:3px;border-radius:4px;vertical-align:bottom" id="play-vite-audio" aria-label="pronounce" onclick="document.getElementById('vite-audio').play();"><svg style="height:2em;width:2em"><use href="../images/voice.svg?no-inline#voice" /></svg></button>, "veet"처럼 발음합니다)는 모던 웹 프로젝트에 더 빠르고 가벼운 개발 경험을 제공하는 것을 목표로 하는 빌드 도구입니다. 크게 두 부분으로 구성됩니다:
+
+- [네이티브 ES 모듈](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)을 통해 소스 파일을 제공하는 개발 서버로, [다양한 기능](./features)과 놀라울 정도로 빠른 [Hot Module Replacement(HMR)](./features#hot-module-replacement)를 제공합니다.
+
+- [Rolldown](https://rolldown.rs)으로 코드를 번들링하고, 프로덕션을 위한 고도로 최적화된 정적 에셋을 출력하도록 미리 구성된 빌드 명령.
+
+Vite는 합리적인 기본 설정을 제공합니다. [기능 가이드](./features)에서 더 자세히 알아보세요. 프레임워크 지원이나 다른 도구와의 통합은 [플러그인](./using-plugins)을 통해 가능합니다. [Vite 설정 가이드](../config/)에서는 필요에 따라 프로젝트에 Vite를 적용하는 방법을 설명합니다.
+
+또한 Vite는 타입이 완벽하게 제공되는 [플러그인 API](./api-plugin)와 [JavaScript API](./api-javascript)를 통해 높은 확장성을 제공합니다.
+
+왜 Vite를 만들게 되었는지 알고 싶다면 [Vite를 사용해야 하는 이유](./why) 섹션을 참고해주세요.
+
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq?via=vite" title="Free Vite Course on Scrimba">Scrimba의 인터랙티브 튜토리얼로 Vite를 배워보세요</ScrimbaLink>
+
+## 지원하는 브라우저 {#browser-support}
+
+개발 중 Vite는 모던 브라우저가 사용된다고 가정합니다. 이는 브라우저가 최신 JavaScript와 CSS 기능 대부분을 지원한다는 뜻입니다. 따라서 Vite는 [변환 타깃을 `esnext`로 설정](https://oxc.rs/docs/guide/usage/transformer/lowering.html#target)합니다. 이렇게 하면 문법 다운레벨링을 피하고, Vite가 원본 소스 코드에 최대한 가까운 형태로 모듈을 제공할 수 있습니다. Vite는 개발 서버가 동작하도록 일부 런타임 코드를 주입합니다. 이 코드는 각 메이저 릴리스 시점(이번 메이저는 2026-01-01)에 [Baseline](https://web-platform-dx.github.io/web-features/) Newly Available에 포함된 기능을 사용합니다.
+
+프로덕션 빌드의 경우, Vite는 기본적으로 [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available 브라우저를 타깃으로 합니다. 최소 2.5년 이전에 릴리스된 브라우저들을 의미합니다. 이 타깃은 설정을 통해 더 낮출 수 있으며, 레거시 브라우저는 공식 플러그인인 [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy)를 통해 지원이 가능합니다. 이에 대한 더 자세한 내용은 [프로덕션 빌드](./build) 섹션을 참고해 주세요.
+
+## 온라인에서 Vite 체험해보기 {#trying-vite-online}
+
+[StackBlitz](https://vite.new/)에서 Vite를 온라인으로 체험해 볼 수 있습니다. Vite를 구성하기 위해 필요한 설정들을 브라우저에서 직접 실행하므로 로컬 환경과 매우 유사하며, 컴퓨터에 그 어떠한 것도 설치할 필요가 없습니다. `vite.new/{template}` 으로 이동해 사용할 프레임워크를 선택해 시작해보세요.
+
+현재 지원하고 있는 템플릿은 다음과 같습니다:
+
+|             JavaScript              |                TypeScript                 |
+| :---------------------------------: | :---------------------------------------: |
+| [vanilla](https://vite.new/vanilla) | [vanilla-ts](https://vite.new/vanilla-ts) |
+|     [vue](https://vite.new/vue)     |     [vue-ts](https://vite.new/vue-ts)     |
+|   [react](https://vite.new/react)   |   [react-ts](https://vite.new/react-ts)   |
+|  [preact](https://vite.new/preact)  |  [preact-ts](https://vite.new/preact-ts)  |
+|     [lit](https://vite.new/lit)     |     [lit-ts](https://vite.new/lit-ts)     |
+|  [svelte](https://vite.new/svelte)  |  [svelte-ts](https://vite.new/svelte-ts)  |
+|   [solid](https://vite.new/solid)   |   [solid-ts](https://vite.new/solid-ts)   |
+|    [qwik](https://vite.new/qwik)    |    [qwik-ts](https://vite.new/qwik-ts)    |
+
+## 첫 Vite 프로젝트 만들어보기 {#scaffolding-your-first-vite-project}
+
+::: code-group
+
+```bash [npm]
+$ npm create vite@latest
+```
+
+```bash [Yarn]
+$ yarn create vite
+```
+
+```bash [pnpm]
+$ pnpm create vite
+```
+
+```bash [Bun]
+$ bun create vite
+```
+
+```bash [Deno]
+$ deno init --npm vite
+```
+
+:::
+
+이후에는 프롬프트 창에 출력된 메시지를 따라주세요.
+
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~0yhj?via=vite" title="Scaffolding Your First Vite Project">Scrimba에서 인터랙티브 강의를 시청하세요</ScrimbaLink>
+
+::: tip 호환성 참고 사항
+Vite는 [Node.js](https://nodejs.org/en/) 20.19+ 또는 22.12+를 요구합니다. 다만 일부 템플릿의 경우 더 높은 버전의 Node.js를 요구할 수 있으니, 패키지 관리자에서 경고가 표시되면 업그레이드해 주세요.
+:::
+
+:::: details create vite를 커맨드 라인 옵션과 함께 사용하기
+
+프로젝트의 이름이나 사용하려는 템플릿을 직접 지정할 수도 있습니다. 예를 들어, Vite + Vue 프로젝트를 만들고 싶다면 다음과 같이 입력해주세요:
+
+::: code-group
+
+```bash [npm]
+# npm 7+, extra double-dash is needed:
+$ npm create vite@latest my-vue-app -- --template vue
+```
+
+```bash [Yarn]
+$ yarn create vite my-vue-app --template vue
+```
+
+```bash [pnpm]
+$ pnpm create vite my-vue-app --template vue
+```
+
+```bash [Bun]
+$ bun create vite my-vue-app --template vue
+```
+
+```bash [Deno]
+$ deno init --npm vite my-vue-app --template vue
+```
+
+:::
+
+지원되는 각 템플릿에 대한 자세한 내용은 [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)를 참고해 주세요: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
+
+현재 디렉터리에 프로젝트를 생성하려면 프로젝트 이름으로 `.`을 사용하세요.
+
+인터랙티브 프롬프트 없이 프로젝트를 생성하려면 `--no-interactive` 플래그를 사용할 수 있습니다.
+
+::::
+
+## 커뮤니티 템플릿 {#community-templates}
+
+create-vite는 인기 있는 프레임워크로 작성된 템플릿을 기반으로 프로젝트를 빠르게 시작할 수 있는 도구입니다. 이 외에도 [Awesome Vite의 templates 항목](https://github.com/vitejs/awesome-vite#templates)에서 다양한 도구와 프레임워크를 타겟으로 하는 커뮤니티 템플릿들을 확인할 수 있습니다.
+
+템플릿이 `https://github.com/user/project`와 같이 GitHub에 호스팅되어 있다면, `https://github.stackblitz.com/user/project`로 접속해 온라인에서 템플릿을 체험해 볼 수 있습니다. (프로젝트 URL의 `github` 뒷부분에 `.stackblitz`를 붙여주세요.)
+
+[tiged](https://github.com/tiged/tiged) 같은 도구를 사용해 템플릿 중 하나로 프로젝트를 스캐폴딩할 수도 있습니다. 프로젝트가 GitHub에 있고 기본 브랜치가 `main`이라고 가정하면, 다음과 같이 로컬 사본을 만들 수 있습니다:
+
+```bash
+npx tiged user/project my-project
+cd my-project
+
+npm install
+npm run dev
+```
+
+## 수동 설치 {#manual-installation}
+
+프로젝트 내에서 `vite` CLI를 설치할 수 있습니다:
+
+::: code-group
+
+```bash [npm]
+$ npm install -D vite
+```
+
+```bash [Yarn]
+$ yarn add -D vite
+```
+
+```bash [pnpm]
+$ pnpm add -D vite
+```
+
+```bash [Bun]
+$ bun add -D vite
+```
+
+```bash [Deno]
+$ deno add -D npm:vite
+```
+
+:::
+
+그리고 다음과 같이 `index.html` 파일을 생성해주세요:
+
+```html
+<p>Hello Vite!</p>
+```
+
+이후 아래 CLI 명령을 터미널에서 실행합니다:
+
+::: code-group
+
+```bash [npm]
+$ npx vite
+```
+
+```bash [Yarn]
+$ yarn vite
+```
+
+```bash [pnpm]
+$ pnpm vite
+```
+
+```bash [Bun]
+$ bunx vite
+```
+
+```bash [Deno]
+$ deno run -A npm:vite
+```
+
+:::
+
+이제 `http://localhost:5173`에서 `index.html` 파일을 확인할 수 있습니다.
+
+## `index.html` 그리고 프로젝트의 루트 {#index-html-and-project-root}
+
+만들어진 Vite 프로젝트를 유심히 보면 `index.html` 파일이 `public` 디렉터리가 아닌 프로젝트의 루트에 위치해 있다는 것을 발견할 수 있습니다. 의도적으로 이렇게 위치시킨 것인데, 추가적인 번들링 과정 없이 `index.html` 파일이 앱의 진입점이 되게끔 하기 위함입니다.
+
+Vite는 `index.html` 파일을 소스 코드이자 JavaScript 모듈 그래프를 구성하는 요소 중 하나로 취급하고 있습니다. 다시말해, `<script type="module" src="...">` 태그를 이용해 JavaScript 소스 코드를 가져온다는 의미이며, 인라인으로 작성된 `<script type="module">`이나 `<link href>`와 같은 CSS 역시 Vite에서 취급이 가능합니다. 추가적으로, Vite는 `index.html` 내에 존재하는 URL에 대해 `%PUBLIC_URL%`과 같은 자리 표시자 없이 사용할 수 있도록 URL 베이스를 자동으로 맞춰줍니다.
+
+Vite는 정적(Static) HTTP 서버와 비슷하게 "루트 디렉터리"라는 개념을 갖고 있습니다. 향후 `<root>`라는 이름으로 문서 내에서 보게 되는데, 이는 Absolute URL이 프로젝트 루트를 가리키게 하므로 일반적인 정적 파일 서버와 동일하게 코드를 작성할 수 있습니다. 또한 Vite는 프로젝트 루트 외부에서도 디펜던시를 가져올 수 있도록 구현했는데, 이를 이용하면 모노리포 구성 등 다양한 작업이 가능합니다.
+
+또한 Vite는 여러 `.html` 파일을 앱의 진입점으로 하는 [Multi-page apps](./build#multi-page-app)를 지원하고 있습니다.
+
+#### 프로젝트 루트 지정 {#specifying-alternative-root}
+
+`vite`은 개발 서버를 시작할 때 현재 위치해 있는 디렉터리를 프로젝트 루트로 가정하고 동작합니다. 만약 특정 디렉터리를 지정해 프로젝트 루트로써 동작하게끔 하고 싶다면, `vite serve some/sub/dir` 명령으로 Vite를 시작해주세요.
+참고로 Vite는 프로젝트 루트 내에서 [설정 파일(`vite.config.js`)](/config/#configure-vite)을 확인하기에, 프로젝트 루트가 변경된다면 해당 파일도 함께 옮겨줘야 합니다.
+
+## 커맨드 라인 인터페이스 {#command-line-interface}
+
+vite가 설치된 프로젝트는 `vite` 명령을 통해 바로 Vite를 실행할 수 있습니다. (`npx vite`을 이용해도 되구요.) 기본적으로 Vite에서 제공하는 npm 스크립트는 아래와 같습니다.
+
+<!-- prettier-ignore -->
+```json [package.json]
+{
+  "scripts": {
+    "dev": "vite", // start dev server, aliases: `vite dev`, `vite serve`
+    "build": "vite build", // build for production
+    "preview": "vite preview" // locally preview production build
+  }
+}
+```
+
+Vite CLI와 함께 `--port`, `--open`와 같은 옵션을 사용할 수 있습니다. 모든 CLI 옵션을 보고자 한다면, vite가 설치된 프로젝트 안에서 `npx vite --help` 명령을 실행해주세요.
+
+좀 더 자세한 정보는 [커맨드 라인 인터페이스](./cli.md) 문서에서 다루고 있습니다.
+
+## 릴리스되지 않은 Vite 사용하기 {#using-unreleased-commits}
+
+최신 기능을 테스트하기 위해 새 릴리스까지 기다릴 수 없다면, https://pkg.pr.new 를 통해 특정 Vite 커밋을 설치하는 방법도 있습니다:
+
+::: code-group
+
+```bash [npm]
+$ npm install -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [Yarn]
+$ yarn add -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [pnpm]
+$ pnpm add -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [Bun]
+$ bun add -D https://pkg.pr.new/vite@SHA
+```
+
+:::
+
+`SHA`를 [Vite 커밋 SHA](https://github.com/vitejs/vite/commits/main/) 중 하나로 대체해 주세요. 참고로 한 달 이내의 커밋에 대해서만 동작하며, 그 이후 커밋 릴리스는 삭제됩니다.
+
+또는 [vite 리포지토리](https://github.com/vitejs/vite)를 로컬 머신에 클론한 다음, 이를 직접 빌드하고 링크할 수도 있습니다([pnpm](https://pnpm.io/)이 필요합니다):
+
+```bash
+git clone https://github.com/vitejs/vite.git
+cd vite
+pnpm install
+cd packages/vite
+pnpm run build
+pnpm link # use your preferred package manager for this step
+```
+
+그런 다음 Vite 기반 프로젝트로 이동해 `pnpm link vite`를 실행하세요. 또는 `vite`를 전역으로 링크할 때 사용한 패키지 매니저를 사용하세요. 이제 개발 서버를 다시 시작하면 최신 변경 사항을 사용할 수 있습니다.
+
+Vite가 어떻게, 언제 릴리스되는지 더 알아보려면 [릴리스](../releases.md) 문서를 확인해 주세요.
+
+::: tip Vite를 사용하는 디펜던시
+디펜던시에서 간접적으로 사용되는 Vite 버전을 교체하려면, [npm overrides](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) 또는 [pnpm overrides](https://pnpm.io/9.x/package_json#pnpmoverrides)를 사용해야 합니다.
+:::
+
+## 커뮤니티 {#community}
+
+질문이나 도움이 필요하다면, [Discord](https://chat.vite.dev) 또는 [GitHub Discussions](https://github.com/vitejs/vite/discussions)에 방문해주세요.
