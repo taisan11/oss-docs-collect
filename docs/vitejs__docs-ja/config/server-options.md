@@ -57,7 +57,7 @@ HTTPS を使用する場合は、このチェックはスキップされます�
 :::
 
 ::: details 環境変数による設定
-環境変数 `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` を設定することで、許可するホストを追加できます。
+環境変数 `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` を設定することで、許可するホストを追加できます。複数のホストを指定する場合はカンマで区切ってください（例: `host1.example.com,host2.example.com`）。
 :::
 
 ## server.port
@@ -181,17 +181,45 @@ export default defineConfig({
 
 ## server.hmr
 
-- **型:** `boolean | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, overlay?: boolean, clientPort?: number, server?: Server }`
+- **型:** `boolean | { overlay?: boolean }`
 
-HMR 接続の無効化または設定（HMR WebSocket が http サーバーと異なるアドレスを使用する必要がある場合）。
+HMR 動作の無効化または設定。
 
 `server.hmr.overlay` を `false` に設定すると、サーバーエラーのオーバレイが無効になります。
 
-`protocol` は、HMR 接続のために使われる WebSocket プロトコルを設定します: `ws`（WebSocket）または `wss`（WebSocket Secure）
+::: warning 非推奨オプション
 
-`clientPort` は、クライアント側のポートのみを上書きする高度なオプションで、クライアントコードが探すポートとは異なるポートで WebSocket を配信できます。
+WebSocket 関連のオプション（`protocol`、`host`、`port`、`path`、`clientPort`、`timeout`、`server`）は非推奨です。代わりに [`server.ws`](#server-ws) を使用してください。これらのオプションは自動的に同期されるため、既存の設定は引き続き動作します。
 
-`server.hmr.server` を指定されている場合、Vite は指定されたサーバーを通して HMR 接続要求を処理します。ミドルウェアモードでない場合、Vite は既存のサーバーを通して HMR 接続要求を処理しようとします。これは、自己署名証明書を使用する場合や、Vite を単一ポートでネットワーク上に公開したい場合に役立ちます。
+:::
+
+## server.ws
+
+- **型:** `false | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, clientPort?: number, server?: Server }`
+
+WebSocket 接続オプションを設定します。`false` に設定すると、WebSocket サーバーと接続を完全に無効にします。
+
+- `protocol` - WebSocket プロトコル（`ws` または `wss`）
+- `host` - WebSocket サーバーのホスト
+- `port` - WebSocket サーバーのポート
+- `path` - WebSocket のパス
+- `clientPort` - クライアント側のポートのみを上書きするオプションで、クライアントコードが探すポートとは異なるポートで WebSocket を配信できます
+- `timeout` - 接続タイムアウト（ミリ秒、デフォルト: 30000）
+- `server` - WebSocket 接続に使用するカスタム HTTP サーバー
+
+`server.ws.server` を指定した場合、Vite は指定されたサーバーを通して WebSocket 接続要求を処理します。ミドルウェアモードでない場合、Vite は既存のサーバーを通して WebSocket 接続要求を処理しようとします。これは、自己署名証明書を使用する場合や、Vite を単一ポートでネットワーク上に公開したい場合に役立ちます。
+
+```js
+export default defineConfig({
+  server: {
+    ws: {
+      protocol: 'wss',
+      host: 'localhost',
+      port: 3001,
+    },
+  },
+})
+```
 
 いくつかの例については、[`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue)をご覧ください。
 
@@ -200,14 +228,14 @@ HMR 接続の無効化または設定（HMR WebSocket が http サーバーと�
 デフォルトの設定では、Vite の前のリバースプロキシが WebSocket のプロキシに対応していることが期待されています。Vite の HMR クライアントが WebSocket の接続に失敗した場合、クライアントはリバースプロキシを迂回して直接 Vite の HMR サーバーに接続するようにフォールバックします:
 
 ```
-Direct websocket connection fallback. Check out https://vite.dev/config/server-options.html#server-hmr to remove the previous connection error.
+Direct websocket connection fallback. Check out https://vite.dev/config/server-options.html#server-ws to remove the previous connection error.
 ```
 
 フォールバックが発生した際のブラウザーに表示されるエラーは無視できます。直接リバースプロキシを迂回してエラーを回避するには、次のいずれかを行えます:
 
 - WebSocket もプロキシするようにリバースプロキシを設定する
-- [`server.strictPort = true`](#server-strictport) を設定し、`server.hmr.clientPort` を `server.port` と同じ値に設定する
-- `server.hmr.port` を [`server.port`](#server-port) とは異なる値に設定する
+- [`server.strictPort = true`](#server-strictport) を設定し、`server.ws.clientPort` を `server.port` と同じ値に設定する
+- `server.ws.port` を [`server.port`](#server-port) とは異なる値に設定する
 
 :::
 
