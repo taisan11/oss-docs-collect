@@ -35,15 +35,6 @@ for (const [name, repo] of Object.entries(repos)) {
       const outPath = path.join(docsOutDir, relativePath);
       await fs.mkdir(path.dirname(outPath), { recursive: true });
       await Bun.file(outPath).write(content);
-
-      const out = {
-        repo: name,
-        path: relativePath,
-        content,
-        commit,
-      };
-
-      await fs.appendFile("dataset.jsonl", JSON.stringify(out) + "\n");
     }
   }
 
