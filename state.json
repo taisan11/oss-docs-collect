@@ -9,8 +9,8 @@
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
   "oxc-project/website": "bb4a0ba858a1438764e702e6d8920aad8f9e25b2",
-  "rolldown/rolldown": "85f5689d2e415e10900896b77ac205364960fe84",
-  "vitejs/docs-cn": "b0875d1fb099b4dd258165d1125b24e8374a1ba5",
-  "vitejs/docs-ja": "026dd58b649b831d5035a51118e320ef64c1b41c",
+  "rolldown/rolldown": "d714144a2781b5cb18950f83ab052da1823634d7",
+  "vitejs/docs-cn": "a28ab371c49eb634258e1f9d8b060b73d9cbde8b",
+  "vitejs/docs-ja": "7278b8dbd7e2fb396b40671357091eab61ae3c39",
   "vitejs/docs-ko": "fc9ab71935c15778554cc54dfacd72f7b7ad693b"
 }
