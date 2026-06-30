@@ -101,7 +101,7 @@ Vite は [esbuild](https://esbuild.github.io/) と同じ動作に従い、`tscon
 
 - [TypeScript ドキュメント](https://www.typescriptlang.org/tsconfig/#paths)
 
-`resolve.tsconfigPaths: true` を指定すると、`tsconfig.json` 内の `paths` オプションを使用してインポートを解決するように Vite に指示できます。
+[`resolve.tsconfigPaths: true`](/config/shared-options.md#resolve-tsconfigpaths) を指定すると、`tsconfig.json` 内の `paths` オプションを使用してインポートを解決するように Vite に指示できます。
 
 この機能にはパフォーマンスコストがあり、[TypeScript チームはこのオプションを外部ツールの動作を変えるために使用することを推奨していない](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.)ことに注意してください。
 
@@ -118,7 +118,7 @@ Vite は [esbuild](https://esbuild.github.io/) と同じ動作に従い、`tscon
 - [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
 
 ::: tip `skipLibCheck`
-Vite のスターターテンプレートでは依存関係の型チェックを避けるため、デフォルトで `"skipLibCheck": "true"` となっています。これは TypeScript の特定のバージョンや設定のみをサポートするように選択できるようにするためです。詳しくは [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688) を参照してください。
+Vite のスターターテンプレートでは依存関係の型チェックを避けるため、デフォルトで `"skipLibCheck": true` となっています。これは TypeScript の特定のバージョンや設定のみをサポートするように選択できるようにするためです。詳しくは [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688) を参照してください。
 :::
 
 ### クライアントでの型 {#client-types}
@@ -678,6 +678,16 @@ console.log(add(1, 2)) // 3
 WebAssembly モジュール自体がインポートを宣言している場合、Vite は JavaScript モジュールからそれらを解決します。各インポートのモジュール名はインポート指定子として扱われ（`.wasm` ファイルからの相対パスで解決）、要求されたメンバーは自動的にインスタンスに接続されます。
 
 これは [WebAssembly/ES Module Integration の提案](https://github.com/WebAssembly/esm-integration)に従っています。WebAssembly モジュールは非同期にインスタンス化されるため、直接インポートされた `.wasm` ファイルは非同期モジュールとして振る舞い、トップレベルの `await` サポートが必要です。
+
+::: tip TypeScript のサポート
+
+`.wasm` ファイルの型は不明なため、TypeScript は `Module '"*.wasm"' has no exported member 'add'` のようなエラーを報告します。これを解決するには、`tsconfig.json` で [`allowArbitraryExtensions`](https://www.typescriptlang.org/tsconfig/#allowArbitraryExtensions) を有効にし、`.wasm` ファイルの隣に宣言ファイルを作成します。`allowArbitraryExtensions` を有効にすると、TypeScript は `.wasm` のインポートを解決する際に `{filename}.d.wasm.ts` という名前の宣言ファイルを探します。例えば `add.wasm` の場合は `add.d.wasm.ts` を作成します:
+
+```ts [add.d.wasm.ts]
+export function add(a: number, b: number): number
+```
+
+:::
 
 ### 手動での初期化 {#manual-initialization}
 
