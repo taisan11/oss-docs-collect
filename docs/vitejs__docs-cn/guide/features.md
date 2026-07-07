@@ -76,7 +76,7 @@ Vite 会参考 `tsconfig.json` 中的一些配置项，并设置相应的 Oxc �
 - [TypeScript 文档](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)
 
 如果 TypeScript 的 target 是 `ES2022` 或更高版本，包括 `ESNext`，那么默认值将为 `true`。这与 [TypeScript 4.3.2 及以后版本的行为](https://github.com/microsoft/TypeScript/pull/42663) 保持一致。
-若设了其他 TypeScript target，则本项会默认为 `false`.
+若设了其他 TypeScript target，则本项会默认为 `false`。
 
 `true` 是标准的 ECMAScript 运行时行为。
 
@@ -118,7 +118,7 @@ Vite 忽略 `tsconfig.json` 中的 `target` 值，遵循与 [esbuild](https://es
 - [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
 
 ::: tip `skipLibCheck`
-Vite 启动模板默认情况下会设置 `"skipLibCheck": "true"`，以避免对依赖项进行类型检查，因为它们可能只支持特定版本和配置的 TypeScript。你可以在 [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688) 了解更多信息。
+Vite 启动模板默认情况下会设置 `"skipLibCheck": true`，以避免对依赖项进行类型检查，因为它们可能只支持特定版本和配置的 TypeScript。你可以在 [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688) 了解更多信息。
 :::
 
 ### 客户端类型 {#client-types}
