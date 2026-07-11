@@ -5,12 +5,12 @@
   "nananapo/veryl-riscv-book": "c077cf6e3d5d5bdfb1ec6b04a3c4733359797f01",
   "vitejs/vite": "c961cae2868cc1521457ec60583867f0440e6949",
   "vitejs/docs-es": "908cd42bdbcd7dd7d869d9b07660c658d2f21352",
-  "vitejs/docs-de": "7a26761c61c8c6a2501e827493f8a9414750fce5",
+  "vitejs/docs-de": "8c8cf437af023f9fd9f6e70bb320dc171d66d0a5",
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
   "oxc-project/website": "0d84ea8a8b6479b9b56a6ce93696f284a28f76ff",
   "rolldown/rolldown": "21d7b32827045e377a82c3cb681dafa51c244883",
-  "vitejs/docs-cn": "0c437de2bbb69b0b2bc5889516d524137f9dbc5d",
+  "vitejs/docs-cn": "580fbd8b964e998f72891d2d3299a0cbe5971d35",
   "vitejs/docs-ja": "f4f2695f0daceddd7e99da0fb0ea6d449add1633",
   "vitejs/docs-ko": "fc9ab71935c15778554cc54dfacd72f7b7ad693b"
 }
