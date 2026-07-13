@@ -7,20 +7,19 @@ outline: deep
 
 ## Oxlint / Oxfmt / Both
 
-- [Microsoft VS Code](https://github.com/microsoft/vscode) (Oxlint) - Microsoft's VS Code editor
 - [Google Neuroglancer](https://github.com/google/neuroglancer) (Oxlint) - WebGL volumetric data visualization tool
 - [Shopify](https://www.shopify.com/news/performance%F0%9F%91%86-complexity%F0%9F%91%87-killer-updates-from-shopify-engineering) (Oxlint) - Reduced hour of workload to seconds
 - [Cloudflare Agents](https://github.com/cloudflare/agents) (Both) - Cloudflare Agents SDK
 - [BBC Simorgh](https://github.com/bbc/simorgh) (Oxlint) - BBC online rendering platform
 - [Turborepo](https://github.com/vercel/turborepo) (Both) - High-performance build system for JavaScript and TypeScript codebases
-- [Sentry JavaScript](https://github.com/getsentry/sentry-javascript) (Oxfmt) - Official Sentry SDKs for JavaScript
-- [Vue.js](https://github.com/vuejs/core) (Oxfmt) - The progressive JavaScript framework
+- [Sentry JavaScript](https://github.com/getsentry/sentry-javascript) (Both) - Official Sentry SDKs for JavaScript
+- [Vue.js](https://github.com/vuejs/core) (Both) - The progressive JavaScript framework
 - [Hugging Face JS](https://github.com/huggingface/huggingface.js) (Oxfmt) - Hugging Face JS libraries
 - [Bun](https://github.com/oven-sh/bun) (Oxlint) - JavaScript runtime and toolkit
 - [Mastodon](https://github.com/mastodon/mastodon) (Oxfmt) - Decentralized social networking server
 - [Preact](https://github.com/preactjs/preact) (Oxlint) - Fast 3kB React alternative with the same modern API
 - [PostHog](https://github.com/PostHog/posthog) (Oxlint) - Open-source product analytics platform
-- [Lichess](https://github.com/lichess-org/lila) (Oxfmt) - Lichess chess server/frontend
+- [Lichess](https://github.com/lichess-org/lila) (Both) - Lichess chess server/frontend
 - [Rolldown](https://github.com/rolldown/rolldown) (Both) - Rust bundler in the VoidZero/Vite ecosystem
 - [Renovate](https://github.com/renovatebot/renovate) (Oxlint) - Dependency update automation bot
 - [Vue Pinia](https://github.com/vuejs/pinia) (Oxfmt) - Vue's official state management library
@@ -32,7 +31,10 @@ outline: deep
 - [Hey API](https://heyapi.dev/) (Oxlint) - OpenAPI to TypeScript codegen ecosystem
 - [nuxt-auth](https://github.com/sidebase/nuxt-auth) (Oxlint) - Authentication built for Nuxt 3
 - [OpenClaw](https://github.com/openclaw/openclaw) (Both) - Open source personal AI assistant
-- [npmx.dev](https://github.com/npmx-dev/npmx.dev) (Oxfmt) - npm package explorer
+- [npmx.dev](https://github.com/npmx-dev/npmx.dev) (Both) - npm package explorer
+- [Bluesky](https://github.com/bluesky-social/social-app) (Oxlint) - Social media network
+- [Electron](https://github.com/electron/electron) (Both) - Framework for cross-platform apps
+- [SWR](https://github.com/vercel/swr) (Both) - Library for data fetching in React
 
 ## Resolver
 
@@ -41,12 +43,14 @@ outline: deep
 - [turborepo](https://github.com/vercel/turborepo/pull/9134) - for `turbo-trace`
 - [dts-resolver](https://npmx.dev/package/dts-resolver) - Resolves TypeScript declaration files for dependencies
 - [codemod](https://github.com/codemod/codemod) - For module resolution in jssg codemods
+- [Storybook](https://github.com/storybookjs/storybook) - for module resolution as part of change detection
 
 ## Parser
 
 - [todoctor](https://github.com/azat-io/todoctor) - CLI tool to track and visualize TODO comments in Git repositories and make report
 - [nuxt](https://nuxt.com) - Uses `oxc-parser` to [parse code in plugins](https://github.com/nuxt/nuxt/pull/30066)
 - [Elide](https://elide.dev) - Uses `oxc` to strip TypeScript types before execution
+- [Storybook](https://github.com/storybookjs/storybook) - for parsing as part of change detection
 
 ## Transformer
 
