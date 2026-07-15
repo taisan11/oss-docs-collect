@@ -5,12 +5,12 @@
   "nananapo/veryl-riscv-book": "f9a79fe89671131fe67acacd5984eb277faf25c0",
   "vitejs/vite": "b59a73f76f5557492d83d097bb33b3dd02f27d51",
   "vitejs/docs-es": "e1f50b14e85a69f8884915915d6ae3c2dc8aaeb7",
-  "vitejs/docs-de": "7c2a9f133cae2e75d4b89c3f70066eaab9d56f63",
+  "vitejs/docs-de": "f23fccaedd4338e3431097ab5c6116a33910f5e0",
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
-  "oxc-project/website": "dc7552f20a0ad4f2e0356d60718e34992abc5a06",
-  "rolldown/rolldown": "11951de09b2ac47b6183568758d621c8a1cbc7b4",
-  "vitejs/docs-cn": "f72042b5b2029824dba055f7cbe7fcc063cc3538",
+  "oxc-project/website": "888cab6368c7c406b58a1350cbd56a73734d0b4c",
+  "rolldown/rolldown": "03e1e3422cd85495c9863ff3bc3b24212d9f4be2",
+  "vitejs/docs-cn": "681ddc689440dfa257396231fc03a6b3d59ceaf8",
   "vitejs/docs-ja": "e11d3a09677186f5813cc8f39a9f6d0bb096145d",
   "vitejs/docs-ko": "fc9ab71935c15778554cc54dfacd72f7b7ad693b"
 }
