@@ -9,6 +9,7 @@
     "dataset:upload": "bun dataset/upload.ts"
   },
   "devDependencies": {
+    "@huggingface/hub": "latest",
     "@types/bun": "latest"
   },
   "peerDependencies": {
