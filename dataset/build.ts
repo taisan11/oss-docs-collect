@@ -31,11 +31,15 @@ function titleFromMarkdown(content: string, filePath: string): string {
   const frontMatter = content.match(/^---\s*\n([\s\S]*?)\n---/);
   const frontTitle = frontMatter?.[1]?.match(/^title:\s*["']?(.+?)["']?\s*$/m)?.[1];
   if (frontTitle) return frontTitle.trim();
-
   const heading = content.match(/^#\s+(.+)$/m)?.[1];
   if (heading) return heading.trim();
-
   return path.basename(filePath, path.extname(filePath));
+}
+
+function sourceUrl(repoName: string, gitUrl: string): string {
+  return repoName.includes("/")
+    ? `https://github.com/${repoName}`
+    : gitUrl.replace(/\.git$/, "");
 }
 
 function githubUrl(repoName: string, filePath: string, commit: string): string | undefined {
@@ -46,10 +50,8 @@ function githubUrl(repoName: string, filePath: string, commit: string): string |
 const rows: DatasetRow[] = [];
 
 for (const [repoName, repo] of Object.entries(repos)) {
-  const safeName = repoName.replace("/", "__");
-  const repoDocsDir = path.join(docsDir, safeName);
+  const repoDocsDir = path.join(docsDir, repoName.replace("/", "__"));
   const commit = state[repoName];
-
   if (!commit) {
     console.warn(`skip ${repoName}: no commit in state.json`);
     continue;
@@ -61,14 +63,12 @@ for (const [repoName, repo] of Object.entries(repos)) {
   }));
 
   for (const relativePath of files) {
-    const absolutePath = path.join(repoDocsDir, relativePath);
-    const content = await Bun.file(absolutePath).text();
     const normalizedPath = relativePath.replaceAll(path.sep, "/");
-    const id = `${repoName}:${normalizedPath}`;
-    const sourceUrl = `https://${repoName.split("/")[1]}.invalid`;
+    const content = await Bun.file(path.join(repoDocsDir, relativePath)).text();
+    const ghUrl = githubUrl(repoName, normalizedPath, commit);
 
     rows.push({
-      id,
+      id: `${repoName}:${normalizedPath}`,
       repo: repoName,
       path: normalizedPath,
       title: titleFromMarkdown(content, normalizedPath),
@@ -76,8 +76,8 @@ for (const [repoName, repo] of Object.entries(repos)) {
       language: repo.lang,
       license: repo.license,
       ...(repo.licenseUrl ? { license_url: repo.licenseUrl } : {}),
-      source_url: sourceUrl,
-      ...(githubUrl(repoName, normalizedPath, commit) ? { github_url: githubUrl(repoName, normalizedPath, commit) } : {}),
+      source_url: sourceUrl(repoName, repo.gitUrl),
+      ...(ghUrl ? { github_url: ghUrl } : {}),
       commit,
       collected_at: collectedAt,
     });
@@ -85,7 +85,6 @@ for (const [repoName, repo] of Object.entries(repos)) {
 }
 
 rows.sort((a, b) => a.id.localeCompare(b.id));
-
 const jsonl = rows.map((row) => JSON.stringify(row)).join("\n") + (rows.length ? "\n" : "");
 await Bun.write(path.join(outputDir, "data.jsonl"), jsonl);
 
@@ -98,10 +97,11 @@ const manifest = {
 };
 await Bun.write(path.join(outputDir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 
+const languages = [...new Set(rows.map((row) => row.language))].sort();
 const datasetCard = `---
 pretty_name: OSS Documentation Collection
 language:
-${[...new Set(rows.map((row) => row.language))].sort().map((lang) => `  - ${lang}`).join("\n")}
+${languages.map((lang) => `  - ${lang}`).join("\n")}
 tags:
   - documentation
   - software-engineering
