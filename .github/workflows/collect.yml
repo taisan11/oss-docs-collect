@@ -2,8 +2,11 @@ name: collect
 
 on:
   schedule:
-    - cron: "0 10,22 * * *"
+    - cron: "0 18 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run:
@@ -11,16 +14,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
 
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install
 
-      - run: bun index.ts
+      - name: Collect documentation
+        run: bun run collect
 
-      - run: |
-          git config set user.email "action@github.com"
-          git config set user.name "collect bot"
-          git add .
-          git commit -m "update dataset" || echo "no changes"
+      - name: Commit collected documentation
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "collect bot"
+          git add docs state.json
+          git commit -m "data: update collected docs" || echo "no changes"
           git push
+
+      - name: Build Hugging Face dataset
+        run: bun run dataset:build
+
+      - name: Upload to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_DATASET_REPO: taisan11/oss-docs-collect
+        run: bun run dataset:upload
