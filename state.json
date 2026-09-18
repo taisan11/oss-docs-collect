@@ -3,14 +3,14 @@
   "akku1139/hono-ja": "f9957bd8eb8d8caa7ba3ec92a1c14327ff2157d6",
   "sircmpwn/wayland-book": "7d431b34e8ce946ae7f5b17889e891de98e8305a",
   "nananapo/veryl-riscv-book": "0572e9da0f1c799899997ad64d901f3e3e10df75",
-  "vitejs/vite": "bd3a3a96552a900f31c56b0d8be229dcd20618f4",
+  "vitejs/vite": "e9078f865cdff6bed77cd729214a7e2868f126b5",
   "vitejs/docs-es": "775a63895703ef34e2ae2a86bcf6123affb51a1d",
   "vitejs/docs-de": "7e6283cff15386a72d8c03687e07e5f9531c27f0",
   "vitejs/docs-pt": "b6c4bac906b471d21d2473df410d32afa7b2cef9",
   "vitejs/docs-fa": "8af0a5ddd4ff8dc6b0203ee1ffbf46b452afcb3f",
-  "oxc-project/website": "d7e572d5746cf4b15df05c8502a692eaf9050c99",
-  "rolldown/rolldown": "a42049b31d82b21f0056f621fabce9b41f6be151",
+  "oxc-project/website": "239d19dd3fe110efa92649ffa93fd6aca617b823",
+  "rolldown/rolldown": "cd911a4d41be2943f2b19e9f4a4a9ce8d5b8f3c0",
   "vitejs/docs-cn": "7d98ae830b60a6d45b2378ab73dc295398cdb95b",
-  "vitejs/docs-ja": "2a6ee796053ea9078ae432be4359457192063002",
+  "vitejs/docs-ja": "68d04629c4baf70de317912d75d655df16175e4f",
   "vitejs/docs-ko": "fc9ab71935c15778554cc54dfacd72f7b7ad693b"
 }
