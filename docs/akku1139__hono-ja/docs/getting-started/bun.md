@@ -60,7 +60,7 @@ export default app
 
 既存のプロジェクトに Hono セットアップしている場合、 `bun run dev` コマンドは、 "Hello World" スクリプトが `src/index.ts` に置かれていると想定します。
 
-## 4. Run
+## 4. 実行
 
 以下のコマンドを実行します。
 
@@ -121,6 +121,10 @@ app.get('*', serveStatic({ path: './static/fallback.txt' }))
     └── images
         └── dinotocat.png
 ```
+
+::: warning
+ルートのマッチングは大文字小文字を区別しますが、ファイルシステムはそうではない場合があります。 Windows と macOS では、`/ADMIN/secret.txt` は `/admin/secret.txt` と同じファイルとして解決され、Windows は `/PROTEC~1` のような 8.3 形式の短縮名も受け付けます。 `app.use('/admin/*', auth)` のようなパススコープのミドルウェアはそれらの表記にマッチしないため、静的ルート配下のファイルを保護するためにそれらに頼らないでください。 保護するファイルは配信するディレクトリの外に置くか、`serveStatic` が扱うすべてのパスにミドルウェアを適用してください。
+:::
 
 ### `rewriteRequestPath`
 
