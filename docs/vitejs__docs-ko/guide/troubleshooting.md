@@ -135,6 +135,20 @@ Dev Container나 VS Code의 포트 포워딩 기능을 사용하는 경우, 정�
 
 자세한 내용은 [#16522](https://github.com/vitejs/vite/issues/16522)를 참조하세요.
 
+### 파일 감시 중 잘못된 작업 오류 (Illegal operation error) {#illegal-operation-error-when-watching-files}
+
+파일 또는 디렉터리가 파일 시스템 이벤트를 지원하지 않는 파일 시스템에 위치한 경우, Vite가 이를 감시하지 못할 수 있습니다.
+
+발생할 수 있는 오류 예시는 다음과 같습니다:
+
+```
+Error: EISDIR: illegal operation on a directory, watch 'C:/Users/me/project/vite.config.js'
+```
+
+예를 들어, VirtualBox 공유 폴더에서 이러한 문제가 발생할 수 있습니다.
+
+이를 해결하려면 [`server.watch.usePolling`](/config/server-options#server-watch)을 활성화할 수 있습니다. 단, [`usePolling`은 CPU 사용률을 높일 수 있음](https://github.com/paulmillr/chokidar/tree/3.6.0#performance)에 유의하세요.
+
 ## HMR {#hmr}
 
 ### Vite가 파일 변경을 감지했지만 HMR이 작동하지 않음 {#vite-detects-a-file-change-but-the-hmr-is-not-working}
@@ -206,7 +220,9 @@ HTML 파일 출력이 `file` 프로토콜로 열린 경우 다음 오류와 함�
 
 이 오류는 불안정한 네트워크 환경에서 발생할 수 있습니다. 예를 들어 네트워크 오류나 서버 다운타임으로 요청이 실패하는 경우입니다.
 
-브라우저 제한으로 인해 동적 임포트를 다시 시도할 수 없다는 점에 유의하세요([whatwg/html#6768](https://github.com/whatwg/html/issues/6768)).
+[재시도 가능한 모듈 로딩(retriable module loading)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility)을 지원하는 브라우저는 네트워크 및 HTTP 오류를 모듈 맵에 캐시하지 않습니다. 이러한 브라우저에서는 애플리케이션이나 프레임워크가 원본 동적 임포트를 재시도할 수 있습니다. 이전 브라우저는 실패를 캐시하므로 페이지를 새로고침하는 것이 여전히 대안으로 유지됩니다.
+
+재시도를 하더라도 새 배포로 인해 청크가 영구적으로 제거된 [버전 불일치(#version-skew)](#version-skew) 문제는 해결되지 않습니다.
 
 #### 브라우저 확장 프로그램의 요청 차단 {#browser-extensions-blocking-requests}
 
